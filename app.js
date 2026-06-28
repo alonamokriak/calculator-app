@@ -34,10 +34,11 @@ divideBtn.onclick = function () {
 function printResult(result) {
   if (result > 0) {
     resultElement.style.color = "green";
+  } else if (result === 0) {
+    resultElement.style.color = "gray";
   } else {
     resultElement.style.color = "red";
   }
-  resultElement.textContent = result;
 }
 
 function computeNumbersWithAction(inp1, inp2, actionSymbol) {
@@ -49,7 +50,10 @@ function computeNumbersWithAction(inp1, inp2, actionSymbol) {
     return num1 - num2;
   } else if (actionSymbol == "*") {
     return num1 * num2;
-  } else if (actionSymbol == "/") {
+  } else if (actionSymbol === "/") {
+    if (num2 === 0) {
+      return "Division by 0 error";
+    }
     return num1 / num2;
   }
 }
@@ -57,5 +61,4 @@ function computeNumbersWithAction(inp1, inp2, actionSymbol) {
 submitBtn.onclick = function () {
   const result = computeNumbersWithAction(input1, input2, action);
   printResult(result);
-
 };
